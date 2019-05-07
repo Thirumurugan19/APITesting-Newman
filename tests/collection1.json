@@ -1,0 +1,504 @@
+{
+	"info": {
+		"_postman_id": "3d981e42-ee84-4125-af2a-1bddb9568dd0",
+		"name": "Coupons Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "coupon",
+			"item": [
+				{
+					"name": "test",
+					"item": [
+						{
+							"name": "Oauth Token - Login Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e7c45c36-570b-453f-a4c8-d5f53eebad73",
+										"exec": [
+											"   pass = true;",
+											"   fail = false;",
+											"    ",
+											"   if (responseCode.code === 201 || responseCode.code === 200) {",
+											"    tests[\"Request Succesfully Sent  HTTP 200 -OK\"] = pass;}",
+											"  ",
+											"  if (responseCode.code === 400 || responseCode.code === 404 ) {",
+											"    tests[\"Check Inputs, Can't login. HTTP 4XX Error\"] = false;}",
+											"   ",
+											"  if (responseCode.code === 500 ) {",
+											"    tests[\"Internal Server Error - HTTP 500\"] = false; }",
+											"    ",
+											"    pm.test(\"Response time expected is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"   /* pm.test(\"RegistrationInitiate Service -Passed\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Registered\");",
+											"});*/",
+											"",
+											"    /*var mobnum = postman.setEnviornmentVariable(currentMobNum);",
+											"    var cCode = postman.setEnviornmentVariable(currentCountryCode);*/",
+											"",
+											"    var jsonData = JSON.parse(responseBody);",
+											"    var accessToken = (jsonData.access_token);",
+											"    var refreshToken= (jsonData.refresh_token);",
+											"    tests[\"accessToken = \" +accessToken] =pass;",
+											"    //tests[ \"Auth Token \" +resAuthTokenVL] = pass ; ",
+											"   //postman.setEnviornmentVariable(\"authorisationToken\",accessToken);",
+											"   postman.setEnvironmentVariable(\"authToken\",jsonData.access_token);",
+											"    postman.setEnvironmentVariable(\"URL\",\"http://182.72.208.171:9090\");",
+											"    postman.setEnvironmentVariable(\"refreshToken\",jsonData.refresh_token);",
+											"   ",
+											"  ",
+											"   ",
+											"     ",
+											"    "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic cmVjaXByb2NpOnJlY2lwcm9jaQ==",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "saritha",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "test@123",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://182.72.208.171:9090/oauth/token",
+									"protocol": "http",
+									"host": [
+										"182",
+										"72",
+										"208",
+										"171"
+									],
+									"port": "9090",
+									"path": [
+										"oauth",
+										"token"
+									]
+								},
+								"description": "http://localhost:8080/oauth/token"
+							},
+							"response": [
+								{
+									"name": "Oauth Token - Login",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer bd0bb2bf-b81e-477e-963e-9e8c47aa1c52",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "username",
+													"value": "Neeta",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "R9di7Ca7",
+													"type": "text"
+												},
+												{
+													"key": "grant_type",
+													"value": "password",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://182.72.208.171:9090/oauth/token",
+											"protocol": "http",
+											"host": [
+												"182",
+												"72",
+												"208",
+												"171"
+											],
+											"port": "9090",
+											"path": [
+												"oauth",
+												"token"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "WWW-Authenticate",
+											"value": "Basic realm=\"oauth2/client\""
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json;charset=UTF-8"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 26 Nov 2018 10:26:09 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": 1543227969262,\n    \"status\": 401,\n    \"error\": \"Unauthorized\",\n    \"message\": \"Unauthorized\",\n    \"path\": \"/oauth/token\"\n}"
+								}
+							]
+						},
+						{
+							"name": "create coupon Param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "75b8a7eb-56e7-442e-874c-6dd6dc16ff14",
+										"exec": [
+											" pass = true;\r",
+											" fail = false;\r",
+											"    \r",
+											"    //postman.setNextRequest(\"{{URL}}/oauth/token\");\r",
+											"   if (responseCode.code === 201 || responseCode.code === 200) {\r",
+											"    tests[\"Request Succesfully Sent  HTTP 200 -OK\"] = pass;}\r",
+											"  \r",
+											"  if (responseCode.code === 400 || responseCode.code === 404 ) {\r",
+											"    tests[\"Bad request, 4XX Error\"] = false;}\r",
+											"   \r",
+											"  if (responseCode.code === 500 ) {\r",
+											"    tests[\"Internal Server Error - HTTP 500\"] = false; }\r",
+											"    \r",
+											"    pm.test(\"Response time expected is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"\t});\r",
+											"\r",
+											"\t//var jsonData = JSON.parse(responseBody);\r",
+											"\r",
+											"\t//var response = JSON.parse(responseBody),errorDetails = [];\r",
+											"\r",
+											"\tvar arr = pm.response.json();\r",
+											"\t//tests[\"Error - \" +arr.error]=false;\r",
+											"\tif (arr.message==\"failure\")\r",
+											"\t{\r",
+											"\r",
+											"\t\tfor(i = 0; i < arr.errorDetails.length; i++) {\r",
+											"\t\ttests[\"\" +arr.errorDetails[i].description]= false; \r",
+											"\t\t}\r",
+											"\t}\r",
+											"\telse if(arr.error==\"Bad Request\")\r",
+											"\t\ttests[\"\" +arr.message]=false;\r",
+											"\telse if (arr.message == \"success\")\r",
+											"\t\ttests[\"Coupon created successfully\"]= true;\r",
+											"\telse\r",
+											"\t\ttests[\"Check Request and response body for the same inputs\"]= true;\r",
+											"\r",
+											"    //var resp= JSON.parse(responseBody);\r",
+											"    /*pm.iterationData.get(\"couponTitle\");\r",
+											"\tpostman.setenvironmentVariable(\"couponTitleNew\",resp.couponTitle);*/"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "bfcf1252-e77b-44e9-97b1-22d107317cbd",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "bearer {{authToken}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"discountType\":\"{{discountType}}\",\r\n\t\"discountValue\":{{discountValue}},\r\n\t\"startDate\":\"{{startDate}}\",\r\n\t\"endDate\":\"{{endDate}}\",\r\n\t\"expiryValue\":{{expiryValue}},\r\n\t\"expiryType\":\"{{expiryType}}\",\r\n\t\"internalComment\":\"{{internalComment}}\",\r\n\t\"notificationType\":\"{{notificationType}}\",\r\n\t\"status\":\"{{status}}\",\r\n\t\"couponLocales\":[\r\n\t\t\t\t{\t\r\n\t\t\t\t\t\"languageId\":\"{{languageIdEN}}\",\r\n\t\t\t\t\t\"couponTitle\":\"{{couponTitleEN}}\",\r\n\t\t\t\t\t\"couponDescription\":\"{{couponDescriptionEN}}\",\r\n\t\t\t\t\t\"imagePath\":\"{{imagePathEN}}\",\r\n\t\t\t\t\t\"termsAndCondition\":\"{{termsAndConditionEN}}\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"languageId\":\"{{languageIdAR}}\",\r\n\t\t\t\t\t\"couponTitle\":\"{{couponTitleAR}}\",\r\n\t\t\t\t\t\"couponDescription\":\"{{couponDescriptionAR}}\",\r\n\t\t\t\t\t\"imagePath\":\"{{imagePathAR}}\",\r\n\t\t\t\t\t\"termsAndCondition\":\"{{termsAndConditionAR}}\"\r\n\t\t\t\t}\t\r\n\t\t\t],\r\n\t\t\t\"codeGenerationType\":\"{{codeGenerationType}}\",\r\n\t\t\t\"codeType\":\"{{codeType}}\",\r\n\t\t\t\"codeValue\":\"{{codeValue}}\",\r\n\t\t\t\"minOrderAmounts\":[\r\n\t\t\t{\r\n\t\t\t\t\"regionId\":{{regionId}},\r\n\t\t\t\t\t\"orderAmount\":{{orderAmount}}\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"regionId\":{{regionIdAR}},\r\n\t\t\t\t\"orderAmount\":{{orderAmountAR}}\t\r\n\t\t\t}\r\n\t\t\t\t\t],\r\n\t\t\t\"couponUsageLimit\":{{couponUsageLimit}},\r\n\t\t\t\"usageLimitPerCustomer\":{{usageLimitPerCustomer}},\r\n\t\t\t\"couponUsageBy\":{{couponUsageBy}},\r\n\t\t\t\"skuFilePath\":\"{{skuFilePath}}\",\r\n\t\t\t\"couponStoreIds\":{{couponStoreIds}}\t\t      \r\n\t\t\t\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{URL}}/api/ads/coupon/v1/create",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"ads",
+										"coupon",
+										"v1",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "create coupon Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "75b8a7eb-56e7-442e-874c-6dd6dc16ff14",
+								"exec": [
+									" pass = true;\r",
+									" fail = false;\r",
+									"    \r",
+									"    //postman.setNextRequest(\"{{URL}}/oauth/token\");\r",
+									"   if (responseCode.code === 201 || responseCode.code === 200) {\r",
+									"    tests[\"Request Succesfully Sent  HTTP 200 -OK\"] = pass;}\r",
+									"  \r",
+									"  if (responseCode.code === 400 || responseCode.code === 404 ) {\r",
+									"    tests[\"Bad request, 4XX Error\"] = false;}\r",
+									"   \r",
+									"  if (responseCode.code === 500 ) {\r",
+									"    tests[\"Internal Server Error - HTTP 500\"] = false; }\r",
+									"    \r",
+									"    pm.test(\"Response time expected is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"\t});\r",
+									"\r",
+									"\t//var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"\t//var response = JSON.parse(responseBody),errorDetails = [];\r",
+									"\r",
+									"\tvar arr = pm.response.json();\r",
+									"\t//tests[\"Error - \" +arr.error]=false;\r",
+									"\tif (arr.message==\"failure\")\r",
+									"\t{\r",
+									"\r",
+									"\t\tfor(i = 0; i < arr.errorDetails.length; i++) {\r",
+									"\t\ttests[\"\" +arr.errorDetails[i].description]= false; \r",
+									"\t\t}\r",
+									"\t}\r",
+									"\telse if(arr.error==\"Bad Request\")\r",
+									"\t\ttests[\"\" +arr.message]=false;\r",
+									"\telse if (arr.message == \"success\")\r",
+									"\t\ttests[\"Coupon created successfully\"]= true;\r",
+									"\telse\r",
+									"\t\ttests[\"Check Request and response body for the same inputs\"]= true;\r",
+									"\t\t/*pm.iterationData.get(\"couponTitle\");\r",
+									"\tpostman.setEnvironmentVariable(\"couponTitleNew\",arr.couponTitle);*/\r",
+									"\t\t\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bfcf1252-e77b-44e9-97b1-22d107317cbd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{authToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"discountType\":\"PERCENTAGE\",\r\n\t\"discountValue\":10,\r\n\t\"startDate\":\"2019-02-22\",\r\n\t\"endDate\":\"2019-06-22\",\r\n\t\"expiryValue\":12,\r\n\t\"expiryType\":\"DAYS\",\r\n\t\"internalComment\":\"days testing\",\r\n\t\"notificationType\":\"ONLINE\",\r\n\t\"status\":\"ONLINE\",\r\n\t\"couponLocales\":[\r\n\t\t\t\t{\t\r\n\t\t\t\t\t\"languageId\":\"1\",\r\n\t\t\t\t\t\"couponTitle\":\"Coupon iteration try two\",\r\n\t\t\t\t\t\"couponDescription\":\"Coupon iteration\",\r\n\t\t\t\t\t\"imagePath\":\"EN1/QA/image.png\",\r\n\t\t\t\t\t\"termsAndCondition\":\"Terms  And Condition\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"languageId\":\"3\",\r\n\t\t\t\t\t\"couponTitle\":\"coupon iteration\",\r\n\t\t\t\t\t\"couponDescription\":\"coupon iteration\",\r\n\t\t\t\t\t\"imagePath\":\"EN1/QA/image.png\",\r\n\t\t\t\t\t\"termsAndCondition\":\"Terms  And Condition\"\r\n\t\t\t\t}\t\r\n\t\t\t],\r\n\t\t\t\"codeGenerationType\":\"GENERIC\",\r\n\t\t\t\"codeType\":\"FIXED\",\r\n\t\t\t\"codeValue\":\"A12345678670\",\r\n\t\t\t\"minOrderAmounts\":[\r\n\t\t\t{\r\n\t\t\t\t\"regionId\":14,\r\n\t\t\t\t\t\"orderAmount\":5000\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"regionId\":16,\r\n\t\t\t\t\"orderAmount\":7000\t\r\n\t\t\t}\r\n\t\t\t\t\t],\r\n\t\t\t\"couponUsageLimit\":5,\r\n\t\t\t\"usageLimitPerCustomer\":2,\r\n\t\t\t\"couponUsageBy\":false,\r\n\t\t\t\"skuFilePath\":\"coupon/11_sku code_1548918665182.xls\",\r\n\t\t\t\"couponStoreIds\":[30]\t\t      \r\n\t\t\t\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/ads/coupon/v1/create",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"ads",
+								"coupon",
+								"v1",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new coupon",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "906ba5f4-5205-4d38-b76d-b5c970a97ff9",
+								"exec": [
+									" pass = true;\r",
+									" fail = false;\r",
+									"    \r",
+									"    //postman.setNextRequest(\"{{URL}}/oauth/token\");\r",
+									"   if (responseCode.code === 201 || responseCode.code === 200) {\r",
+									"    tests[\"Request Succesfully Sent  HTTP 200 -OK\"] = pass;}\r",
+									"  \r",
+									"  if (responseCode.code === 400 || responseCode.code === 404 ) {\r",
+									"    tests[\"Bad request, 4XX Error\"] = false;}\r",
+									"   \r",
+									"  if (responseCode.code === 500 ) {\r",
+									"    tests[\"Internal Server Error - HTTP 500\"] = false; }\r",
+									"    \r",
+									"    pm.test(\"Response time expected is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"\t});\r",
+									"\r",
+									"//\tvar arr = JSON.parse(responseBody);\r",
+									"\r",
+									"\t//var response = JSON.parse(responseBody),errorDetails = [];\r",
+									"\r",
+									"//\tvar arr = pm.response.json();\r",
+									"//\ttests[\"Error - \" +arr.message]=false;\r",
+									"/*\tif (arr.message==\"failure\")\r",
+									"\t{\r",
+									"\r",
+									"\t\tfor(i = 0; i < arr.errorDetails.length; i++) {\r",
+									"\t\ttests[\"\" +arr.errorDetails[i].description]= false; \r",
+									"\t\t}\r",
+									"\t}\r",
+									"\telse if(arr.error==\"Bad Request\")\r",
+									"\t\ttests[\"\" +arr.message]=false;\r",
+									"\telse if (arr.message == \"success\")\r",
+									"\t\ttests[\"Coupon created successfully\"]= true;\r",
+									"\telse\r",
+									"\t\ttests[\"Check Request and response body for the same inputs\"]= true;*/\r",
+									"\t\t/*pm.iterationData.get(\"couponTitle\");\r",
+									"\tpostman.setEnvironmentVariable(\"couponTitleNew\",arr.couponTitle);*/\r",
+									"\t\t\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{authToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"discountType\":\"ITEMPERCENTAGE\",\r\n\t\"discountValue\":5,\r\n\t\"startDate\":\"2019-02-01\",\r\n\t\"endDate\":\"2019-12-24\",\r\n\t\"expiryValue\":1,\r\n\t\"expiryType\":\"DAYS\",\r\n\t\"internalComment\":\"testing\",\r\n\t\"notificationType\":\"ONLINE\",\r\n\t\"status\":\"ONLINE\",\r\n\t\"couponLocales\":[\r\n\t\t\t\t{\t\r\n\t\t\t\t\t\"languageId\":\"1\",\r\n\t\t\t\t\t\"couponTitle\":\"Coupon iteration try\",\r\n\t\t\t\t\t\"couponDescription\":\"Coupon iteration\",\r\n\t\t\t\t\t\"imagePath\":\"EN1/QA/image.png\",\r\n\t\t\t\t\t\"termsAndCondition\":\"Terms  And Condition\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"languageId\":\"3\",\r\n\t\t\t\t\t\"couponTitle\":\"coupon iteration try\",\r\n\t\t\t\t\t\"couponDescription\":\"coupon iteration\",\r\n\t\t\t\t\t\"imagePath\":\"EN1/QA/image.png\",\r\n\t\t\t\t\t\"termsAndCondition\":\"Terms  And Condition\"\r\n\t\t\t\t}\t\r\n\t\t\t],\r\n\t\t\t\"codeGenerationType\":\"GENERIC\",\r\n\t\t\t\"codeType\":\"FIXED\",\r\n\t\t\t\"codeValue\":\"A12345678671\",\r\n\t\t\t\"minOrderAmounts\":[\r\n\t\t\t{\r\n\t\t\t\t\"regionId\":14,\r\n\t\t\t\t\t\"orderAmount\":5000\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"regionId\":16,\r\n\t\t\t\t\"orderAmount\":7000\t\r\n\t\t\t}\r\n\t\t\t\t\t],\r\n\t\t\t\"couponUsageLimit\":20,\r\n\t\t\t\"usageLimitPerCustomer\":5,\r\n\t\t\t\"couponUsageBy\":false,\r\n\t\t\t\"skuFilePath\":\"coupon/11_skucode2_1546606252290.xls\",\r\n\t\t\t\"couponStoreIds\":[30,28,33]\t\t\t      \r\n\t\t\t\r\n}"
+						},
+						"url": {
+							"raw": "http://182.72.208.171:9090/api/ads/coupon/v1/create",
+							"protocol": "http",
+							"host": [
+								"182",
+								"72",
+								"208",
+								"171"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"ads",
+								"coupon",
+								"v1",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
