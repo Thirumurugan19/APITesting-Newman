@@ -24,7 +24,8 @@ Package.json sample :
   },
   "repository": {
     "type": "git",
-    "url": "https://saritha.sr@bitbucket.techtreeit.com/scm/~saritha.sr/reciproci_api_test.git"
+    "url": "https://user1@bitbucket.yourcompany.com/scm/~user1/APITesting-Newman
+.git"
   },
   "author": "Techtree",
   "dependencies": {
